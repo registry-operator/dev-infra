@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: cosi-crd
+  namespace: kube-system
+spec:
+  interval: 5m0s
+  url: https://github.com/kubernetes-sigs/container-object-storage-interface-api.git
+  ref:
+    tag: v0.1.0

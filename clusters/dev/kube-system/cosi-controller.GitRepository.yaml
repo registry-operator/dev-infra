@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: cosi-controller
+  namespace: kube-system
+spec:
+  interval: 5m0s
+  url: https://github.com/kubernetes-sigs/container-object-storage-interface-controller.git
+  ref:
+    tag: v0.1.1

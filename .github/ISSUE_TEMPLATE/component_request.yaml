@@ -1,0 +1,13 @@
+name: Component Request
+description: You want some new application added for every dev environment?
+title: "[COMPONENT]: <title>"
+labels:
+  - kind/component-request
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Is your request related to a problem? Please describe.
+      description: A clear and concise description of what the problem is.
+    validations:
+      required: true

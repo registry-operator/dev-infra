@@ -1,4 +1,5 @@
 tap "fluxcd/tap"
 
-brew "minikube"
 brew "flux"
+brew "pluto"
+brew "pre-commit"
