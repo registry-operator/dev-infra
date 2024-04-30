@@ -52,17 +52,16 @@ Now you're ready to customize and manage your deployments according to your need
 
 ## Accessing services
 
-| Service    | Command                                                                    | Access                                         |
-|------------|----------------------------------------------------------------------------|------------------------------------------------|
-| S3GW       | `kubectl port-forward -n=kube-system svc/s3gw-kube-system-ui-s3gw 8000:80` | [http://localhost:8000](http://localhost:8000) |
-| Prometheus | `kubectl port-forward -n=prometheus-system svc/prometheus-server 8080:80`  | [http://localhost:8080](http://localhost:8080) |
-| Parca      | `kubectl port-forward -n=parca-system svc/parca-server 7070:7070`          | [http://localhost:7070](http://localhost:7070) |
+| Service    | Command                                                                     | Access                                           |
+|------------|-----------------------------------------------------------------------------|--------------------------------------------------|
+| Jaeger     | `kubectl port-forward -n=observability svc/jaeger-query 10080:80`           | [http://localhost:10080](http://localhost:10080) |
+| Parca      | `kubectl port-forward -n=parca-system svc/parca-server 10180:7070`          | [http://localhost:10180](http://localhost:10180) |
+| Prometheus | `kubectl port-forward -n=prometheus-system svc/prometheus-server 10280:80`  | [http://localhost:10280](http://localhost:10280) |
+| S3GW       | `kubectl port-forward -n=kube-system svc/s3gw-kube-system-ui-s3gw 10380:80` | [http://localhost:10380](http://localhost:10380) |
 
 ## FAQ
 
 1. **Why no Grafana?**
     The main disadvantage is time. Managing Grafana and making sure the updates are not breaking the cluster, dashboards and data sources requires too much effort for our liking.
-2. **Why no tracing agnet?**
-    We are not settled on the tracing (yet). If we do decide to implement it into `registry-operator` (or any of the auxiliary apps), we will add Jaeger.
-3. **Why no logs collection?**
+2. **Why no logs collection?**
     Like with the Grafana - this would turn the dev clusters from cattle to pets, especially if we consider _Loki_ and _Promtail_ setup. Ain't nobody got time for this.

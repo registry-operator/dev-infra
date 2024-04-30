@@ -15,3 +15,7 @@ spec:
   interval: 1m0s
   releaseName: prometheus
   targetNamespace: prometheus-system
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace

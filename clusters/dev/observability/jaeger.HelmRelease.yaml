@@ -1,21 +1,26 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: parca
-  namespace: parca-system
+  name: jaeger
+  namespace: observability
 spec:
   chart:
     spec:
-      chart: parca
+      chart: jaeger
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: parca-dev
-      version: "4.19.0"
+        name: jaegertracing
+      version: "3.0.4"
   interval: 1m0s
-  releaseName: parca
-  targetNamespace: parca-system
+  releaseName: jaeger
+  targetNamespace: observability
   install:
     crds: CreateReplace
   upgrade:
     crds: CreateReplace
+  values:
+    provisionDataStore:
+      cassandra: false
+    storage:
+      type: badger
