@@ -8,5 +8,10 @@
   },
   "vulnerabilityAlerts": {
     "enabled": true
+  },
+  "flux": {
+    "fileMatch": [
+      "clusters/.+\\.yaml$"
+    ]
   }
 }
