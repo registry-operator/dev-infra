@@ -1,0 +1,30 @@
+name: deprecations
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  deprecations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: fluxcd/flux2/action@main
+      - uses: FairwindsOps/pluto/github-action@master
+      - uses: helm/kind-action@v1
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          flux bootstrap github \
+            --token-auth \
+            --owner=registry-operator \
+            --repository=dev-infra \
+            --branch=main \
+            --path='clusters/dev'
+      - run: sleep 60 # give some time to the cluster to start up
+      - id: pluto
+        run: |
+          pluto detect-files-all-in-cluster

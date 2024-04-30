@@ -1,0 +1,5 @@
+# Brew bundle lock
+Brewfile.lock.json
+
+# MacOS attributes files
+.DS_Store

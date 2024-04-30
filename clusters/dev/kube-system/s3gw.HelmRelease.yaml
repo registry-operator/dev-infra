@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: s3gw
+  namespace: kube-system
+spec:
+  chart:
+    spec:
+      chart: s3gw
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: s3gw-charts
+      version: "0.23.0"
+  interval: 1m0s
+  releaseName: s3gw
+  targetNamespace: kube-system
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
+  values:
+    ingress:
+      enabled: false
+    cosi:
+      enabled: true
+    publicDomain: kube-system.svc.cluster.local
+    accessKey: admin
+    secretKey: admin
+    logLevel: "high"
